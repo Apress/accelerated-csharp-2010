@@ -1,0 +1,262 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+    ToolsVersion="4.0"
+    InitialTarget="Compile" >
+
+    <PropertyGroup>
+        <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Chapter3 Include="3_syntax_overview\*.cs" />
+        <Chapter4 Include="4_classes_structs\*.cs"
+                  Exclude="4_classes_structs\4_class_definition_1.cs;
+                           4_classes_structs\4_containment_example_1.cs;
+                           4_classes_structs\4_containment_example_2.cs;
+                           4_classes_structs\4_containment_example_3.cs;
+                           4_classes_structs\4_ctor_struct_2.cs;
+                           4_classes_structs\4_ctor_struct_3.cs;
+                           4_classes_structs\4_encapsulation_example_1.cs;
+                           4_classes_structs\4_encapsulation_example_2.cs;
+                           4_classes_structs\4_encapsulation_example_3.cs;
+                           4_classes_structs\4_encapsulation_example_4.cs;
+                           4_classes_structs\4_encapsulation_example_5.cs;
+                           4_classes_structs\4_inheritance_1.cs;
+                           4_classes_structs\4_inheritance_2.cs;
+                           4_classes_structs\4_inst_init_1.cs;
+                           4_classes_structs\4_interface_1.cs;
+                           4_classes_structs\4_nested_classes_3.cs;
+                           4_classes_structs\4_partial_methods_1a.cs;
+                           4_classes_structs\4_partial_methods_1b.cs;
+                           4_classes_structs\4_properties_1.cs;
+                           4_classes_structs\4_properties_4.cs;
+                           4_classes_structs\4_struct_this_2.cs;
+                           4_classes_structs\4_struct_this_4.cs" />
+        <Chapter5 Include="5_interfaces\*.cs"
+                  Exclude="5_interfaces\abstract_1.cs;
+                           5_interfaces\abstract_2.cs;
+                           5_interfaces\diamond_1.cs;
+                           5_interfaces\iface_1.cs;
+                           5_interfaces\iface_2.cs;
+                           5_interfaces\zoo_1.cs;
+                           5_interfaces\zoo_2.cs" />
+        <Chapter6 Include="6_operators\*.cs"
+                  Exclude="6_operators\6_invalid_use_1.cs" />
+        <Chapter7 Include="7_exception_safety\*.cs"
+                  Exclude="7_exception_safety\7_employee_database_1.cs;
+                           7_exception_safety\7_employee_database_2.cs;
+                           7_exception_safety\7_employee_database_3.cs;
+                           7_exception_safety\7_employee_database_4.cs;
+                           7_exception_safety\7_employee_database_4a.cs;
+                           7_exception_safety\7_employee_database_5.cs" />
+        <Chapter8 Include="8_strings\*.cs"
+                  Exclude="8_strings\8_carib_1.cs;
+                           8_strings\8_formatting_1.cs" />
+        <Chapter9 Include="9_arrays_collections\*.cs" />
+        <Chapter10 Include="10_delegates\*.cs"
+                   Exclude="10_delegates\binder_2.cs;
+                            10_delegates\binder_3.cs;
+                            10_delegates\strategy_1.cs" />
+        <Chapter11 Include="11_generics\*.cs"
+                   Exclude="11_generics\10_constraints_1.cs;
+                            11_generics\10_constraints_examples_2.cs;
+                            11_generics\10_enumerable_1.cs;
+                            11_generics\10_example_1.cs;
+                            11_generics\10_generic_accessibility_1.cs;
+                            11_generics\10_generic_problems_2.cs;
+                            11_generics\10_needs_constraints.cs;
+                            11_generics\10_array_covariance_2.cs" />
+        <Chapter12 Include="12_threading\*.cs" 
+            Exclude="12_threading\named_event_1.cs"/>
+        <Chapter13 Include="13_canonical_forms\*.cs" 
+                   Exclude="13_canonical_forms\13_clone_1.cs;
+                            13_canonical_forms\13_clone_2.cs;
+                            13_canonical_forms\13_clone_3.cs;
+                            13_canonical_forms\13_clone_4.cs;
+                            13_canonical_forms\13_clone_attribute.cs;
+                            13_canonical_forms\13_comparable_1.cs;
+                            13_canonical_forms\13_dispose_3.cs;
+                            13_canonical_forms\13_finalize_1.cs;
+                            13_canonical_forms\13_gethashcode_1.cs;
+                            13_canonical_forms\13_nvi_3.cs;
+                            13_canonical_forms\13_operators_1.cs"/>
+        <Chapter14 Include="14_extension_methods\*.cs" />
+        <Chapter15 Include="15_lambda_expressions\*.cs"
+                   Exclude="15_lambda_expressions\lambda_expression_3a.cs" />
+        <Chapter16 Include="16_linq\*.cs" />
+        <Chapter17 Include="17_dynamic_types\*.cs"
+                   Exclude="17_dynamic_types\cannot_derive_from_dynamic.cs;
+                   17_dynamic_types\duck_typing_1.cs;
+                   17_dynamic_types\dynamic_interfaces_1.cs;
+                   17_dynamic_types\dynamic_is_object.cs;
+                   17_dynamic_types\dynamic_is_object_1.cs;
+                   17_dynamic_types\generic_attribute.cs;
+                   17_dynamic_types\invalid_dynamic_overload.cs;
+                   17_dynamic_types\static_error.cs" />
+
+        <Chapter12References Include="System.Numerics.dll" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PartialMethodSources Include=".\4_classes_structs\4_partial_methods_1a.cs"/>
+        <PartialMethodSources Include=".\4_classes_structs\4_partial_methods_1b.cs"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <LocalizationExampleSources Include="8_strings\8_formatting_1.cs" />
+    </ItemGroup>
+
+    <Target Name="Chapter3" >
+        <Csc Sources="%(Chapter3.Identity)"
+            NoLogo="false"
+            ContinueOnError="false"
+            TargetType="exe"
+            EmitDebugInformation="true" />
+    </Target>
+
+    <Target Name="Chapter4PartialMethods" >
+        <Csc Sources="@(PartialMethodSources)"
+            NoLogo="false"
+            ContinueOnError="false"
+            TargetType="exe"
+            EmitDebugInformation="true" />
+    </Target>
+
+    <Target Name="Chapter4" DependsOnTargets="Chapter4PartialMethods">
+        <Csc Sources="%(Chapter4.Identity)"
+            NoLogo="false"
+            ContinueOnError="false"
+            TargetType="exe"
+            EmitDebugInformation="true" />
+    </Target>
+
+    <Target Name="Chapter5" >
+        <Csc Sources="%(Chapter5.Identity)"
+            NoLogo="false"
+            ContinueOnError="false"
+            TargetType="exe"
+            EmitDebugInformation="true" />
+    </Target>
+
+    <Target Name="Chapter6" >
+        <Csc Sources="%(Chapter6.Identity)"
+            NoLogo="false"
+            ContinueOnError="false"
+            TargetType="exe"
+            EmitDebugInformation="true" />
+    </Target>
+
+    <Target Name="Chapter7" >
+        <Csc Sources="%(Chapter7.Identity)"
+            NoLogo="false"
+            ContinueOnError="false"
+            TargetType="exe"
+            EmitDebugInformation="true" />
+    </Target>
+
+    <Target Name="LocalizationExample" >
+        <Csc Sources="%(LocalizationExampleSources.Identity)"
+            NoLogo="false"
+            ContinueOnError="false"
+            TargetType="winexe"
+            EmitDebugInformation="true" />
+    </Target>
+
+    <Target Name="Chapter8" DependsOnTargets="LocalizationExample">
+        <Csc Sources="%(Chapter8.Identity)"
+            NoLogo="false"
+            ContinueOnError="false"
+            TargetType="exe"
+            EmitDebugInformation="true" />
+    </Target>
+
+    <Target Name="Chapter9" >
+        <Csc Sources="%(Chapter9.Identity)"
+            NoLogo="false"
+            ContinueOnError="false"
+            TargetType="exe"
+            EmitDebugInformation="true" />
+    </Target>
+
+    <Target Name="Chapter10" >
+        <Csc Sources="%(Chapter10.Identity)"
+            NoLogo="false"
+            ContinueOnError="false"
+            TargetType="exe"
+            EmitDebugInformation="true" />
+    </Target>
+
+    <Target Name="Chapter11" >
+        <Csc Sources="%(Chapter11.Identity)"
+            NoLogo="false"
+            ContinueOnError="false"
+            TargetType="exe"
+            EmitDebugInformation="true" />
+    </Target>
+
+    <Target Name="Chapter12" >
+        <Csc Sources="%(Chapter12.Identity)"
+            NoLogo="false"
+            ContinueOnError="false"
+            TargetType="exe"
+            EmitDebugInformation="true"
+            References="@(Chapter12References)" />
+    </Target>
+
+    <Target Name="Chapter13" >
+        <Csc Sources="%(Chapter13.Identity)"
+            NoLogo="false"
+            ContinueOnError="false"
+            TargetType="exe"
+            EmitDebugInformation="true" />
+    </Target>
+
+    <Target Name="Chapter14" >
+        <Csc Sources="%(Chapter14.Identity)"
+            NoLogo="false"
+            ContinueOnError="false"
+            TargetType="exe"
+            EmitDebugInformation="true" />
+    </Target>
+
+    <Target Name="Chapter15" >
+        <Csc Sources="%(Chapter15.Identity)"
+            NoLogo="false"
+            ContinueOnError="false"
+            TargetType="exe"
+            EmitDebugInformation="true" />
+    </Target>
+
+    <Target Name="Chapter16" >
+        <Csc Sources="%(Chapter16.Identity)"
+            NoLogo="false"
+            ContinueOnError="false"
+            TargetType="exe"
+            EmitDebugInformation="true" />
+    </Target>
+
+    <Target Name="Chapter17" >
+        <Csc Sources="%(Chapter17.Identity)"
+            NoLogo="false"
+            ContinueOnError="false"
+            TargetType="exe"
+            EmitDebugInformation="true" />
+    </Target>
+
+    <Target Name="Compile" DependsOnTargets="Chapter3;
+                                             Chapter4;
+                                             Chapter5;
+                                             Chapter6;
+                                             Chapter7;
+                                             Chapter8;
+                                             Chapter9;
+                                             Chapter10;
+                                             Chapter11;
+                                             Chapter12;
+                                             Chapter13;
+                                             Chapter14;
+                                             Chapter15;
+                                             Chapter16;
+                                             Chapter17">
+    </Target>
+
+</Project>
